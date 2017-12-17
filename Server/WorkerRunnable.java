@@ -57,7 +57,7 @@ public class WorkerRunnable implements Runnable {
                     input.close();
                     output.close();
                     clientSocket.close();
-                    System.out.println("Connection for client" + clientSocket.getInetAddress()+" was closed");
+                    System.out.println("Connection for client" + clientSocket.getInetAddress() + " was closed");
                     break;
                 }
 
