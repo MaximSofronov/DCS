@@ -15,7 +15,12 @@ public class Client {
         Socket socket = new Socket(ipAddress,Integer.parseInt(port));
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        System.out.println("Enter number");
+
+        System.out.println("Enter integer and action (a - addition, s - subtraction, m - multiplication, d - division)");
+        System.out.println("Input example: 10 a (space between integer and action is required)");
+        System.out.println("To close connection write \"quit\"");
+
+
         while(!socket.isOutputShutdown()) {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             if (br.ready()) { //данные на консоли - работаем
@@ -28,10 +33,10 @@ public class Client {
                     expStr = request_line.split(" ")[1];
                 }
 
-                if(numberStr.matches("^-?\\d+$") && numberStr.length() < 100000) {
-                    if(expStr.equals("+")) {
+                if (numberStr.matches("^-?\\d+$") && numberStr.length() < 100000) {
+                    if (expStr.equals("a")) {
                         String response = "";
-                        out.println("request '+'");
+                        out.println("addition");
 
                         try {
                             response = in.readLine();
@@ -46,12 +51,12 @@ public class Client {
                         }
 
                         System.out.println("Server response: " + response);
-                        System.out.println("Result: " + numberStr + " + "+response + "=" + (Integer.parseInt(numberStr) + Integer.parseInt(response)));
+                        System.out.println("Result: " + numberStr + " + " + response + " = " + (Integer.parseInt(numberStr) + Integer.parseInt(response)));
                     }
 
-                    if (expStr.equals("-")) {
-                        String response="";
-                        out.println("request '-'");
+                    if (expStr.equals("s")) {
+                        String response = "";
+                        out.println("subtraction");
 
                         try {
                             response = in.readLine();
@@ -69,9 +74,9 @@ public class Client {
                         System.out.println("Result: " + numberStr + " - " + response + " = " + (Integer.parseInt(numberStr) - Integer.parseInt(response)));
                     }
 
-                    if(expStr.equals("*")) {
+                    if (expStr.equals("m")) {
                         String response = "";
-                        out.println("request '*'");
+                        out.println("multiplication");
 
                         try {
                             response = in.readLine();
@@ -89,9 +94,9 @@ public class Client {
                         System.out.println("Result: " + numberStr + " * " + response + " = " + (Integer.parseInt(numberStr) * Integer.parseInt(response)));
                     }
 
-                    if (expStr.equals("/")) {
+                    if (expStr.equals("d")) {
                         String response="";
-                        out.println("request '/'");
+                        out.println("division");
 
                         try {
                             response = in.readLine();
