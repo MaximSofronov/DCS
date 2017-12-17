@@ -17,11 +17,11 @@ public class MultiThreadedServer implements Runnable{
     }
 
     public void run(){
-        synchronized(this) {
+        synchronized(this){
             this.runningThread = Thread.currentThread();
         }
         openServerSocket();
-        while (!isStopped()){
+        while(!isStopped()){
             Socket clientSocket = null;
             try {
                 clientSocket = this.serverSocket.accept();
@@ -54,7 +54,7 @@ public class MultiThreadedServer implements Runnable{
         try {
             this.serverSocket.close();
         } catch (IOException e) {
-            throw new RuntimeException("Error closing server ", e);
+            throw new RuntimeException("Error closing server", e);
         }
     }
 
@@ -62,9 +62,9 @@ public class MultiThreadedServer implements Runnable{
         try {
             this.serverSocket = new ServerSocket(this.serverPort);
         } catch (IOException e) {
-            throw new RuntimeException("Cannot open port 8080 ", e);
+            throw new RuntimeException("Cannot open port 8080", e);
         }
 
-        System.out.println("Server is listening...");
+        System.out.println("Server is listening. IP: " + this.serverSocket.getInetAddress());
     }
 }
