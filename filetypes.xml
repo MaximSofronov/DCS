@@ -4,6 +4,7 @@
       <mapping pattern="hot_tours" type="PLAIN_TEXT" />
       <mapping pattern="49653048" type="PLAIN_TEXT" />
       <mapping ext="data" type="PLAIN_TEXT" />
+      <mapping ext="eot" type="PLAIN_TEXT" />
     </extensionMap>
   </component>
 </application>
